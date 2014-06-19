@@ -46,23 +46,23 @@ You can of course select your desired value from this hash i.e.
     
 And so on. But we have shorthand methods for all this as shown below:
 
-    country("208.95.216.41")
+    GeoipRails.country("208.95.216.41")
      => "United States" 
-    city("208.95.216.41")
+    GeoipRails.city("208.95.216.41")
      => "Colchester" 
-    area_code("208.95.216.41")
+    GeoipRails.area_code("208.95.216.41")
      => "802" 
-    metro_code("208.95.216.41")
+    GeoipRails.metro_code("208.95.216.41")
      => "523" 
-    zipcode("208.95.216.41")
+    GeoipRails.zipcode("208.95.216.41")
      => "05446" 
-    region_code("208.95.216.41")
+    GeoipRails.region_code("208.95.216.41")
      => "VT" 
-    region_name("208.95.216.41")
+    GeoipRails.region_name("208.95.216.41")
      => "Vermont" 
-    latitude("208.95.216.41")
+    GeoipRails.latitude("208.95.216.41")
      => 44.55 
-    longitude("208.95.216.41")
+    GeoipRails.longitude("208.95.216.41")
      => -73.1552 
      
 ## Pros and Cons
