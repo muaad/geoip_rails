@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/geoip_rails.svg)](http://badge.fury.io/rb/geoip_rails)
 # GeoipRails
 
 Gives geolocation details based on an IP address or a host name
