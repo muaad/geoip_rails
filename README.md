@@ -21,19 +21,22 @@ Or install it yourself as:
 
 You can pass the IP address/hostname for which you want to check geolocation data to: 
 
-    GeoipRails.find_by_ip("208.95.216.41")
+    GeoipRails.geolocate("208.95.216.41")
     => {"ip"=>"208.95.216.41", "country_code"=>"US", "country_name"=>"United States", 
     "region_code"=>"VT", "region_name"=>"Vermont", "city"=>"Colchester", "zipcode"=>"05446", 
     "latitude"=>44.55, "longitude"=>-73.1552, "metro_code"=>"523", "area_code"=>"802"}
 
-    GeoipRails.find_by_ip("google.com")
+    GeoipRails.geolocate("google.com")
     => {"ip"=>"173.194.115.72", "country_code"=>"US", "country_name"=>"United States", 
     "region_code"=>"CA", "region_name"=>"California", "city"=>"Mountain View", "zipcode"=>"94043", 
     "latitude"=>37.4192, "longitude"=>-122.0574, "metro_code"=>"807", "area_code"=>"650"}
+    
+You can of course select your desired value from the hash i.e.
 
-You can also use the method below to acheive the same:
-
-    GeoioRails.geolocate("208.95.216.41")
+    GeoipRails.geolocate("208.95.216.41")["country_name"]
+    => "United States"
+    GeoipRails.geolocate("208.95.216.41")["country_code"]
+    => "US"
     
 And so on. But we have shorthand methods for all this as shown below:
 
@@ -56,20 +59,13 @@ And so on. But we have shorthand methods for all this as shown below:
     GeoipRails.longitude("208.95.216.41")
      => -73.1552 
 
-If, for some reason, you want the response in xml or csv, you can do as below:
+If, for some reason, you want the response in xml or csv, you can use the same method but, pass in an extra argument for the format, as shown below:
 
-    GeoipRails.find_by_ip_and_format("208.95.216.41", "xml")
+    GeoipRails.geolocate("208.95.216.41", "xml")
 
-    GeoipRails.find_by_ip_and_format("208.95.216.41", "csv")
+    GeoipRails.geolocate("208.95.216.41", "csv")
 
-    GeoipRails.find_by_ip_and_format("208.95.216.41", "json")
-    
-You can of course select your desired value from the hash i.e.
-
-    GeoipRails.find_by_ip("208.95.216.41")["country_name"]
-    => "United States"
-    GeoipRails.find_by_ip("208.95.216.41")["country_code"]
-    => "US"
+    GeoipRails.geolocate("208.95.216.41", "json") # Json is the default. You don't need to specify it.
      
 ## Pros and Cons
 

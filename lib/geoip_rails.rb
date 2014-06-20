@@ -22,8 +22,15 @@ module GeoipRails
   #   puts find_by_ip_and_format ip, format
   # end
 
-  def geolocate ip
-  	HTTParty.get("http://freegeoip.net/json/#{ip}")
+  def geolocate(*args)
+    supported_formats = ["json", "xml", "csv"]
+  	if args.length == 1
+      find_by_ip(args[0])
+    else
+      format = args[1].strip.downcase
+      format = "json" if !supported_formats.include?(format)
+      find_by_ip_and_format(args[0], format)
+    end
   end
 
   # def geolocation
