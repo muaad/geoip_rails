@@ -2,7 +2,7 @@
 # GeoipRails
 
 Gives geolocation details based on an IP address or a host name
-The gem uses freegeoip's API to fetch geolocation data given an IP address. freegeoip.net is a public REST API for searching geolocation of IP addresses and host names. Thanks to http://freegeoip.net/ for providing such a great API
+The gem uses freegeoip's API to fetch geolocation data given an IP address. freegeoip.net is a public REST API for searching geolocation of IP addresses and host names. Supported formats include json (default), xml and csv. Thanks to http://freegeoip.net/ for providing such a great API.
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,28 +22,18 @@ Or install it yourself as:
 You can pass the IP address/hostname for which you want to check geolocation data to: 
 
     GeoipRails.find_by_ip("208.95.216.41")
-    GeoipRails.find_by_ip("google.com")
-    
-These return the hashes below:
-
-    {"ip"=>"208.95.216.41", "country_code"=>"US", "country_name"=>"United States", 
+    => {"ip"=>"208.95.216.41", "country_code"=>"US", "country_name"=>"United States", 
     "region_code"=>"VT", "region_name"=>"Vermont", "city"=>"Colchester", "zipcode"=>"05446", 
     "latitude"=>44.55, "longitude"=>-73.1552, "metro_code"=>"523", "area_code"=>"802"}
-    
-And
 
-    {"ip"=>"173.194.115.72", "country_code"=>"US", "country_name"=>"United States", 
+    GeoipRails.find_by_ip("google.com")
+    => {"ip"=>"173.194.115.72", "country_code"=>"US", "country_name"=>"United States", 
     "region_code"=>"CA", "region_name"=>"California", "city"=>"Mountain View", "zipcode"=>"94043", 
     "latitude"=>37.4192, "longitude"=>-122.0574, "metro_code"=>"807", "area_code"=>"650"}
-    
-for the second case.
-    
-You can of course select your desired value from this hash i.e.
 
-    GeoipRails.find_by_ip("208.95.216.41")["country_name"]
-    => "United States"
-    GeoipRails.find_by_ip("208.95.216.41")["country_code"]
-    => "US"
+You can also use the method below to acheive the same:
+
+    GeoioRails.geolocate("208.95.216.41")
     
 And so on. But we have shorthand methods for all this as shown below:
 
@@ -65,6 +55,21 @@ And so on. But we have shorthand methods for all this as shown below:
      => 44.55 
     GeoipRails.longitude("208.95.216.41")
      => -73.1552 
+
+If, for some reason, you want the response in xml or csv, you can do as below:
+
+    GeoipRails.find_by_ip_and_format("208.95.216.41", "xml")
+
+    GeoipRails.find_by_ip_and_format("208.95.216.41", "csv")
+
+    GeoipRails.find_by_ip_and_format("208.95.216.41", "json")
+    
+You can of course select your desired value from the hash i.e.
+
+    GeoipRails.find_by_ip("208.95.216.41")["country_name"]
+    => "United States"
+    GeoipRails.find_by_ip("208.95.216.41")["country_code"]
+    => "US"
      
 ## Pros and Cons
 

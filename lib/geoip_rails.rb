@@ -9,12 +9,18 @@ module GeoipRails
   end
   
   def find_by_ip_and_format ip, format
+    ip = ip.downcase
+    format = format.downcase
     `wget "http://freegeoip.net/#{format}/#{ip}"`
     response = ""
-    File.open("#{ip}").each { |line|  response += line}
-    return response
+    File.open("#{ip}").each { |line|  response += line}#.gsub("\n", " ")
     `rm -rf #{ip}`
+    return response
   end
+
+  # def print ip, format
+  #   puts find_by_ip_and_format ip, format
+  # end
 
   def geolocate ip
   	HTTParty.get("http://freegeoip.net/json/#{ip}")
